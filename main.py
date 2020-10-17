@@ -3,7 +3,7 @@ from db_models.models.cache_model import Cache
 import globals
 import sys
 from tsUtils.isCollectionExist import isCollectionExist
-from processDoc import process_index_doc
+from index_task import process_index_doc
 
 global_init()
 
