@@ -10,6 +10,8 @@ def getVal(db_obj, key: str, error_res=""):
     try:
         print(type(key), "key")
         val = db_obj[key]
+        if val is None:
+            return error_res
         return val
     except KeyError:
         return error_res
