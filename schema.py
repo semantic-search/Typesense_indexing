@@ -34,7 +34,7 @@ schema = {
     },
     {
       'name'  :  'date',
-      'type'  :  'int'
+      'type'  :  'int32'
     }
   ],
   'default_sorting_field': 'date'
