@@ -12,4 +12,5 @@ if not isCollectionExist(globals.COLLECTION_NAME):
     sys.exit()
 
 for file in Cache.objects[:5]:
-    process_index_doc.delay(file)
+    id = file.id
+    process_index_doc.delay(id)

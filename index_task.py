@@ -1,6 +1,9 @@
+from db_models.models.cache_model import Cache
 from init import tsClient
 from task_worker.celery import celery_app
 import globals
+
+global_init()
 
 def getVal(db_obj, key: str, error_res=""):
     try:
@@ -10,7 +13,8 @@ def getVal(db_obj, key: str, error_res=""):
         return error_res
 
 @celery_app.task()
-def process_index_doc(db_obj):
+def process_index_doc(id):
+    db_obj = Cache.objects.get(id=id)
     document = {}
     document["doc_id"] = getVal(db_obj, "id")
     document["file_name"] = getVal(db_obj, "file_name")
