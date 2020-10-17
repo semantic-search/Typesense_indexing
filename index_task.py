@@ -19,8 +19,10 @@ def process_index_doc(db_obj):
     document["labels"] = getVal(db_obj, "labels", [])
     document["scores"] = getVal(db_obj, "scores", [])
     document["image_location"] = getVal(db_obj, "image_location", [])
-    document["date"] = getVal(db_obj, "date")
 
+    document["date"] = int(getVal(db_obj, "date").strftime('%Y%m%d'))
+    
     res = tsClient.collections[globals.COLLECTION_NAME].documents.create(document)
     print(f"file {db_obj.file_name} indexed in typesense")
     print(res)
+
