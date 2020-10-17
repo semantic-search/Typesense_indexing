@@ -1,0 +1,5 @@
+python-dotenv
+mongoengine
+typesense
+celery==4.0.0
+redis
