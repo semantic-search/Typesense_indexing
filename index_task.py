@@ -19,7 +19,7 @@ def process_index_doc(id):
     print(f"id {type(id)}")
     db_obj = Cache.objects.get(id=id)
     document = {}
-    document["doc_id"] = getVal(db_obj, "id")
+    document["doc_id"] = id 
     document["file_name"] = getVal(db_obj, "file_name")
     document["mime_type"] = getVal(db_obj, "mime_type") 
     document["text"] = getVal(db_obj, "text")
