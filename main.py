@@ -13,4 +13,5 @@ if not isCollectionExist(globals.COLLECTION_NAME):
 
 for file in Cache.objects[:5]:
     id = file.id
-    process_index_doc.delay(str(id))
+    print(type(str(id)))
+    # process_index_doc.delay(str(id))

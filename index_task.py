@@ -8,6 +8,7 @@ global_init()
 
 def getVal(db_obj, key: str, error_res=""):
     try:
+        print(type(key), "key")
         val = db_obj[key]
         return val
     except KeyError:
@@ -15,6 +16,7 @@ def getVal(db_obj, key: str, error_res=""):
 
 @celery_app.task()
 def process_index_doc(id):
+    print(f"id {type(id)}")
     db_obj = Cache.objects.get(id=id)
     document = {}
     document["doc_id"] = getVal(db_obj, "id")
