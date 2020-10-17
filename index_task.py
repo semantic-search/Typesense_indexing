@@ -1,3 +1,4 @@
+from db_models.mongo_setup import global_init
 from db_models.models.cache_model import Cache
 from init import tsClient
 from task_worker.celery import celery_app
