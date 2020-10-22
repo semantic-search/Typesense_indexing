@@ -3,3 +3,5 @@ mongoengine
 typesense
 celery==4.2.0rc4
 redis
+
+fastapi
