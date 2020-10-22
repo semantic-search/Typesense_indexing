@@ -31,7 +31,7 @@ schema = {
     },
     {
       'name'  :  'image_location',
-      'type'  :  'string[]'
+      'type'  :  'string'
     },
     {
       'name'  :  'date',
@@ -41,5 +41,6 @@ schema = {
   'default_sorting_field': 'date'
 }
 
-res = tsClient.collections.create(schema)
-print(res)
+def create_collection():
+  res = tsClient.collections.create(schema)
+  print(res)
