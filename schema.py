@@ -14,7 +14,8 @@ schema = {
     },
     {
       'name'  :  'mime_type',
-      'type'  :  'string'
+      'type'  :  'string',
+      'facet': True
     },
     {
       'name'  :  'text',
