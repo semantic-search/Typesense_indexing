@@ -34,6 +34,10 @@ schema = {
       'type' : 'string[]'
     },
     {
+      'name'  :  'url',
+      'type'  :  'string'
+    },
+    {
       'name'  :  'image_location',
       'type'  :  'string'
     },
