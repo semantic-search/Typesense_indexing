@@ -30,6 +30,10 @@ schema = {
       'type' : 'float[]'
     },
     {
+      'name' : 'faces',
+      'type' : 'string[]'
+    },
+    {
       'name'  :  'image_location',
       'type'  :  'string'
     },
