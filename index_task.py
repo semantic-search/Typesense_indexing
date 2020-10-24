@@ -40,6 +40,7 @@ def process_locaion(image_location):
         return string_index
     except Exception as e:
         print(f"error in process location {e}")
+        return ""
 
 @celery_app.task()
 def process_index_doc(id):
