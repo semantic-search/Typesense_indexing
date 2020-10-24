@@ -24,10 +24,7 @@ def process_url_doc(id):
 
     db_obj = Web.objects.get(id=id)
     document = {}
-    document["doc_id"] = id
-    document["text"] = getVal(db_obj, "text")
     print("THIS IS THE ID ", id)
-    document["url"]=getVal(db_obj, "url")
     
     document = {}
     document["doc_id"] = id 

@@ -9,4 +9,4 @@ celery_app = Celery(
 )
 
 celery_app.conf.update(task_track_started=True)
-celery_app.conf.imports = ['index_task']
+celery_app.conf.imports = ['index_task','index_web']

@@ -15,13 +15,13 @@ if not isCollectionExist(globals.COLLECTION_NAME):
     create_collection()
 
 for file in Cache.objects[:5]:
-    id = file.id
+    id = str(file.id)
     print(type(str(id)))
-    process_index_doc.delay(str(id))
+    process_index_doc.delay(id)
 
 for site in Web.objects:
     id = str(site.id) 
     if site.text:
         # print(type(str(id)))
-        process_url_doc(id)
+        process_url_doc.delay(id)
         # q.enqueue(process_url_doc, (str(id)))
