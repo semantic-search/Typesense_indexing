@@ -3,9 +3,10 @@ import json
 import globals
 
 search_parameters = {
-  'q'         : 'the',
-  'query_by'  : 'text',
-  'facet_by' : 'mime_type'
+  'q'         : '*',
+  'query_by'  : 'image_location',
+  'facet_by' : 'mime_type',
+  'per_page' : 50
 }
 
 result = tsClient.collections[globals.COLLECTION_NAME].documents.search(search_parameters)

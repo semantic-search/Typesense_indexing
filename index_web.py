@@ -33,11 +33,10 @@ def process_url_doc(id):
     document["text"] = getVal(db_obj, "text")
     document["labels"] = getVal(db_obj, "labels", [])
     document["scores"] = getVal(db_obj, "scores", [])
-    document["image_location"] = [] # would be always empty for web document 
+    document["image_location"] = "" # would be always empty for web document 
     document["faces"] = getVal(db_obj, "faces", [])
     document["date"] = int(getVal(db_obj, "date").strftime('%Y%m%d'))
     document["url"]=getVal(db_obj, "url")
 
     res = tsClient.collections[globals.COLLECTION_NAME].documents.create(document)
-    print(f"file {db_obj.file_name} indexed in typesense")
     print(res)

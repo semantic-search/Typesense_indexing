@@ -14,7 +14,7 @@ if not isCollectionExist(globals.COLLECTION_NAME):
     print("Creating Collection")
     create_collection()
 
-for file in Cache.objects[:5]:
+for file in Cache.objects:
     id = str(file.id)
     print(type(str(id)))
     process_index_doc.delay(id)

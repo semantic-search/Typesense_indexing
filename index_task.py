@@ -17,30 +17,29 @@ def getVal(db_obj, key: str, error_res=""):
         return error_res
 
 
-def process_locaion(location):
+def process_locaion(image_location):
     try:
-        image_location={}
         location_address={}
-        image_location=location
         location_address=getVal(image_location, "location_address", {}) 
-        string_index=''
-
+        string_index=""
         if location_address["city"]:
-
-            string_index=image_location["location_category"]+location_address['location_name']+\
-                        location_address['city']+location_address['county']\
-                    +location_address['state_district']+location_address['state']+location_address['country']
+            string_index=image_location["location_category"]+ " "+ \
+                        location_address['city'] + " " +location_address['county']+ " "\
+                    +location_address['state_district']+ " "+location_address['state']+ " "+location_address['country']
 
         elif location_address["village"]:
-            string_index = image_location["location_category"] + location_address['location_name'] +\
-                        location_address['village']+ location_address['county'] \
-                        + location_address['state_district'] + location_address['state'] + location_address['country']
+            string_index = image_location["location_category"] + " "+\
+                        location_address['village']+ " "+ location_address['county'] + " "\
+                        + location_address['state_district'] + " "+ location_address['state'] +" "+ location_address['country']
+
+        if image_location["location_name"]:
+            print(f"in if ")
+            string_index = string_index + " "+ image_location["location_name"]
 
         print(type(string_index), string_index)
         return string_index
     except Exception as e:
-        print(e, "error in process location")
-        return ""
+        print(f"error in process location {e}")
 
 @celery_app.task()
 def process_index_doc(id):
@@ -53,11 +52,15 @@ def process_index_doc(id):
     document["text"] = getVal(db_obj, "text")
     document["labels"] = getVal(db_obj, "labels", [])
     document["scores"] = getVal(db_obj, "scores", [])
-    document["image_location"] = process_locaion(getVal(db_obj, "image_location")) 
+    print(f"actual locaiton data",db_obj.image_location )
+    image_location = process_locaion(getVal(db_obj, "image_location"))
+    print(image_location, type(image_location), "ssss xxxxxxxxxxxxxxx------")
+    document["image_location"] = image_location 
     document["faces"] = getVal(db_obj, "faces", [])
     document["url"]=getVal(db_obj, "url")
     document["date"] = int(getVal(db_obj, "date").strftime('%Y%m%d'))
     
+    print(f"document for indexing {document}")
     res = tsClient.collections[globals.COLLECTION_NAME].documents.create(document)
     print(f"file {db_obj.file_name} indexed in typesense")
     print(res)
